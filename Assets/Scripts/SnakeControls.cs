@@ -9,75 +9,81 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine.InputSystem;
-using UnityEngine.InputSystem.Utilities;
-
-public partial class @SnakeControls : IInputActionCollection2, IDisposable
+namespace BlockSnake
 {
-    public InputActionAsset asset { get; }
-    public @SnakeControls()
+    using System;
+    using System.Collections;
+    using System.Collections.Generic;
+    using UnityEngine.InputSystem;
+    using UnityEngine.InputSystem.Utilities;
+
+    public partial class @SnakeControls : IInputActionCollection2, IDisposable
     {
-        asset = InputActionAsset.FromJson(@"{
+        public InputActionAsset asset { get; }
+
+        public @SnakeControls()
+        {
+            asset = InputActionAsset.FromJson(@"{
     ""name"": ""SnakeControls"",
     ""maps"": [],
     ""controlSchemes"": []
 }");
-    }
+        }
 
-    public void Dispose()
-    {
-        UnityEngine.Object.Destroy(asset);
-    }
+        public void Dispose()
+        {
+            UnityEngine.Object.Destroy(asset);
+        }
 
-    public InputBinding? bindingMask
-    {
-        get => asset.bindingMask;
-        set => asset.bindingMask = value;
-    }
+        public InputBinding? bindingMask
+        {
+            get => asset.bindingMask;
+            set => asset.bindingMask = value;
+        }
 
-    public ReadOnlyArray<InputDevice>? devices
-    {
-        get => asset.devices;
-        set => asset.devices = value;
-    }
+        public ReadOnlyArray<InputDevice>? devices
+        {
+            get => asset.devices;
+            set => asset.devices = value;
+        }
 
-    public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
+        public ReadOnlyArray<InputControlScheme> controlSchemes => asset.controlSchemes;
 
-    public bool Contains(InputAction action)
-    {
-        return asset.Contains(action);
-    }
+        public bool Contains(InputAction action)
+        {
+            return asset.Contains(action);
+        }
 
-    public IEnumerator<InputAction> GetEnumerator()
-    {
-        return asset.GetEnumerator();
-    }
+        public IEnumerator<InputAction> GetEnumerator()
+        {
+            return asset.GetEnumerator();
+        }
 
-    IEnumerator IEnumerable.GetEnumerator()
-    {
-        return GetEnumerator();
-    }
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return GetEnumerator();
+        }
 
-    public void Enable()
-    {
-        asset.Enable();
-    }
+        public void Enable()
+        {
+            asset.Enable();
+        }
 
-    public void Disable()
-    {
-        asset.Disable();
-    }
-    public IEnumerable<InputBinding> bindings => asset.bindings;
+        public void Disable()
+        {
+            asset.Disable();
+        }
 
-    public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
-    {
-        return asset.FindAction(actionNameOrId, throwIfNotFound);
-    }
-    public int FindBinding(InputBinding bindingMask, out InputAction action)
-    {
-        return asset.FindBinding(bindingMask, out action);
+        public IEnumerable<InputBinding> bindings => asset.bindings;
+
+        public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
+        {
+            return asset.FindAction(actionNameOrId, throwIfNotFound);
+        }
+
+        public int FindBinding(InputBinding bindingMask, out InputAction action)
+        {
+            return asset.FindBinding(bindingMask, out action);
+        }
     }
 }
