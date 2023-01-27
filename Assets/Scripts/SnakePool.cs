@@ -6,6 +6,8 @@ namespace BlockSnake
 {
     public class SnakePool : MonoBehaviour
     {
+        private float tailUpdateTime = 1f;
+        [SerializeField] private float tailUpdateDisappearTickTime = .1f;
         [SerializeField]private int snakeLangth;
 
         [SerializeField] private List<GameObject> _tailPartList = new();
@@ -30,6 +32,7 @@ namespace BlockSnake
                     {
                         _tailPartList[i].SetActive(true);
                         currentLangth++;
+                        yield return new WaitForSeconds(tailUpdateDisappearTickTime);
                     }
                 }
 
@@ -39,10 +42,11 @@ namespace BlockSnake
                     {
                         _tailPartList[i].SetActive(false);
                         currentLangth--;
+                        yield return new WaitForSeconds(tailUpdateDisappearTickTime);
                     }
                 }
 
-                yield return new WaitForSecondsRealtime(3f);
+                yield return new WaitForSecondsRealtime(tailUpdateTime);
             }
         }
     }

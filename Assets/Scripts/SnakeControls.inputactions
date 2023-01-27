@@ -1,1 +1,56 @@
-{}
+{
+    "name": "SnakeControls",
+    "maps": [
+        {
+            "name": "Snake",
+            "id": "e2ab72cd-a6a3-4c6e-a58b-decf6334b090",
+            "actions": [
+                {
+                    "name": "HorizontalMorion",
+                    "type": "Button",
+                    "id": "2b69d1cc-3246-42cb-8ed1-62e6041e369a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "AD",
+                    "id": "c3c523a7-52b7-49b8-b963-268386809a3d",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalMorion",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "1609ad9d-8998-4cbe-b80a-046312bf9227",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalMorion",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "3c198583-f276-4d64-aa99-5021dd9cfe1b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "HorizontalMorion",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

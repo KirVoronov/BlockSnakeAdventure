@@ -9,25 +9,78 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Utilities;
+
 namespace BlockSnake
 {
-    using System;
-    using System.Collections;
-    using System.Collections.Generic;
-    using UnityEngine.InputSystem;
-    using UnityEngine.InputSystem.Utilities;
-
     public partial class @SnakeControls : IInputActionCollection2, IDisposable
     {
         public InputActionAsset asset { get; }
-
         public @SnakeControls()
         {
             asset = InputActionAsset.FromJson(@"{
     ""name"": ""SnakeControls"",
-    ""maps"": [],
+    ""maps"": [
+        {
+            ""name"": ""Snake"",
+            ""id"": ""e2ab72cd-a6a3-4c6e-a58b-decf6334b090"",
+            ""actions"": [
+                {
+                    ""name"": ""HorizontalMorion"",
+                    ""type"": ""Button"",
+                    ""id"": ""2b69d1cc-3246-42cb-8ed1-62e6041e369a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": ""AD"",
+                    ""id"": ""c3c523a7-52b7-49b8-b963-268386809a3d"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMorion"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""1609ad9d-8998-4cbe-b80a-046312bf9227"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMorion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""3c198583-f276-4d64-aa99-5021dd9cfe1b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""HorizontalMorion"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                }
+            ]
+        }
+    ],
     ""controlSchemes"": []
 }");
+            // Snake
+            m_Snake = asset.FindActionMap("Snake", throwIfNotFound: true);
+            m_Snake_HorizontalMorion = m_Snake.FindAction("HorizontalMorion", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -73,17 +126,52 @@ namespace BlockSnake
         {
             asset.Disable();
         }
-
         public IEnumerable<InputBinding> bindings => asset.bindings;
 
         public InputAction FindAction(string actionNameOrId, bool throwIfNotFound = false)
         {
             return asset.FindAction(actionNameOrId, throwIfNotFound);
         }
-
         public int FindBinding(InputBinding bindingMask, out InputAction action)
         {
             return asset.FindBinding(bindingMask, out action);
+        }
+
+        // Snake
+        private readonly InputActionMap m_Snake;
+        private ISnakeActions m_SnakeActionsCallbackInterface;
+        private readonly InputAction m_Snake_HorizontalMorion;
+        public struct SnakeActions
+        {
+            private @SnakeControls m_Wrapper;
+            public SnakeActions(@SnakeControls wrapper) { m_Wrapper = wrapper; }
+            public InputAction @HorizontalMorion => m_Wrapper.m_Snake_HorizontalMorion;
+            public InputActionMap Get() { return m_Wrapper.m_Snake; }
+            public void Enable() { Get().Enable(); }
+            public void Disable() { Get().Disable(); }
+            public bool enabled => Get().enabled;
+            public static implicit operator InputActionMap(SnakeActions set) { return set.Get(); }
+            public void SetCallbacks(ISnakeActions instance)
+            {
+                if (m_Wrapper.m_SnakeActionsCallbackInterface != null)
+                {
+                    @HorizontalMorion.started -= m_Wrapper.m_SnakeActionsCallbackInterface.OnHorizontalMorion;
+                    @HorizontalMorion.performed -= m_Wrapper.m_SnakeActionsCallbackInterface.OnHorizontalMorion;
+                    @HorizontalMorion.canceled -= m_Wrapper.m_SnakeActionsCallbackInterface.OnHorizontalMorion;
+                }
+                m_Wrapper.m_SnakeActionsCallbackInterface = instance;
+                if (instance != null)
+                {
+                    @HorizontalMorion.started += instance.OnHorizontalMorion;
+                    @HorizontalMorion.performed += instance.OnHorizontalMorion;
+                    @HorizontalMorion.canceled += instance.OnHorizontalMorion;
+                }
+            }
+        }
+        public SnakeActions @Snake => new SnakeActions(this);
+        public interface ISnakeActions
+        {
+            void OnHorizontalMorion(InputAction.CallbackContext context);
         }
     }
 }
