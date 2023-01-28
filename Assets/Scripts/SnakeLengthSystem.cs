@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting.Dependencies.NCalc;
 using UnityEngine;
 
 namespace BlockSnake
@@ -10,6 +9,7 @@ namespace BlockSnake
     public class SnakeLengthSystem : MonoBehaviour
     {
         private float tailUpdateTime = .3f;
+        private int _tailLangthModif = 2;
 
         [SerializeField] private float tailUpdateDisappearTickTime = .1f;
         [SerializeField]private int _snakeLength;
@@ -28,8 +28,11 @@ namespace BlockSnake
 
         private void CheckLength()
         {
-            _snakeLength = _headPart.GetComponent<SnakeTrigger>().GetSnakeTempLenght;
-            _headText.text = Convert.ToString(_snakeLength);
+            var _snakeLengthTemp = _headPart.GetComponent<SnakeTrigger>().GetSnakeTempLenght;
+
+            _snakeLength = _snakeLengthTemp / _tailLangthModif;
+            _headText.text = Convert.ToString(_snakeLengthTemp);
+
             if (_snakeLength < 0) UnityEditor.EditorApplication.isPaused = true;
         }
 

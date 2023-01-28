@@ -6,7 +6,7 @@ namespace BlockSnake
 {
     public class SnakeTrigger : MonoBehaviour
     {
-        private int _snakeTempLenght = 0;
+        private int _snakeTempLenght = 1;
 
         public int GetSnakeTempLenght { get => _snakeTempLenght; }
 
