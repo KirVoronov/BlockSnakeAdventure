@@ -9,7 +9,7 @@ namespace BlockSnake
     public class BlockColorChange : MonoBehaviour
     {
         private float _colorNum = 10f;
-        private float _colorModif = 4f;
+        private float _colorModif = 8.5f;
         private Renderer _renderer;
 
 
@@ -18,21 +18,19 @@ namespace BlockSnake
         void Start()
         {
             _renderer = GetComponent<Renderer>();
-            _text = GetComponentInChildren<TMP_Text>();
-            _colorNum = Single.Parse(_text.text);
-            //StartCoroutine(ChangeColor());
+            _colorNum = Int32.Parse(_text.text);
+            StartCoroutine(ChangeColor());
         }
 
         private IEnumerator ChangeColor()
         {
             while (true)
             {
-                var tempColor = _colorNum; //* _colorModif;
-                Debug.Log(tempColor);
-                _renderer.material.color = new Color(tempColor, .125f, .50f);
+                var tempColor = _colorNum * _colorModif;
+                _renderer.material.color = new Color(tempColor/255f, 125f/255f, 50f / 255f);
                 yield return new WaitForFixedUpdate();
             }
         }
 
-}
+    }
 }
