@@ -6,7 +6,6 @@ namespace BlockSnake
     public class LevelSystem : MonoBehaviour
     {
         private int _currentIndex = 0;
-
         private float _lastZ = 25f;
 
         private Vector3 position;
@@ -30,7 +29,6 @@ namespace BlockSnake
 
                 yield return new WaitForFixedUpdate();
             }
-
         }
 
         private void UpdateLevel()

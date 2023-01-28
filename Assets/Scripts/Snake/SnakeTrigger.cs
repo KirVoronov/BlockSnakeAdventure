@@ -7,8 +7,10 @@ namespace BlockSnake
     public class SnakeTrigger : MonoBehaviour
     {
         private int _snakeTempLenght = 1;
+        private int _scoreSum = 0;
 
-        public int GetSnakeTempLenght { get => _snakeTempLenght; }
+        public int GetSnakeTempLenght => _snakeTempLenght;
+        public int GetScoreSum => _scoreSum;
 
         private void OnCollisionEnter(Collision collision)
         {
@@ -17,7 +19,11 @@ namespace BlockSnake
           
             if (collision.gameObject.name.Contains("Block") && dot >= .7f)
             {
-                _snakeTempLenght -= Int32.Parse(collision.collider.GetComponentInChildren<TMP_Text>().text);
+                var currentBlockPower = Int32.Parse(collision.collider.GetComponentInChildren<TMP_Text>().text);
+
+                _snakeTempLenght -= currentBlockPower;
+
+                if(_snakeTempLenght >0) _scoreSum += currentBlockPower;
             }
             else if (collision.gameObject.name.Contains("Sin"))
             {

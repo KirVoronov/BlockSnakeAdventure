@@ -17,7 +17,6 @@ namespace BlockSnake
                 transform.position -= transform.forward * Time.deltaTime;
                 yield return new WaitForFixedUpdate();
             }
-
         }
     }
 }
