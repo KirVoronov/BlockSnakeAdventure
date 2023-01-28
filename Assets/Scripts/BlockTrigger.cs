@@ -6,16 +6,15 @@ namespace BlockSnake
 {
     public class BlockTrigger : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
+        private void OnCollisionStay(Collision collision)
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            if (collision.gameObject.name == "SnakeHead")
+            {
+                var normal = -collision.contacts[0].normal.normalized;
+                var dot = Vector3.Dot(normal, Vector3.back);
+                if (dot >= .7f)
+                    gameObject.SetActive(false);
+            }
         }
     }
 }
