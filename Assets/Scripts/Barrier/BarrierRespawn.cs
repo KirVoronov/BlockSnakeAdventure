@@ -1,14 +1,13 @@
-using BlockSnake;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace BlockSnake
 {
-    public class AppleRespawn : MonoBehaviour
+    public class BarrierRespawn : MonoBehaviour
     {
         [SerializeField] private Vector3 _pos;
-        [SerializeField] private List<GameObject> _apples;
+        [SerializeField] private List<GameObject> _barriers;
 
         private void Start()
         {
@@ -19,19 +18,19 @@ namespace BlockSnake
         {
             while (true)
             {
-                if (transform.position.z == _pos.z) RespawnApples();
+                if (transform.position.z == _pos.z) RespawnBarriers();
 
                 yield return new WaitForFixedUpdate();
             }
         }
 
-        private void RespawnApples()
+        private void RespawnBarriers()
         {
-            for (var i = 0; i < _apples.Count; i++)
+            for (var i = 0; i < _barriers.Count; i++)
             {
-                _apples[i].SetActive(false);
-                _apples[i].SetActive(true);
-                _apples[i].GetComponent<AppleRandomSystem>().RunRandomSpawn();
+                _barriers[i].SetActive(false);
+                _barriers[i].SetActive(true);
+                _barriers[i].GetComponent<BarrierRandomSystem>().RunRandomSpawn();
             }
         }
     }
