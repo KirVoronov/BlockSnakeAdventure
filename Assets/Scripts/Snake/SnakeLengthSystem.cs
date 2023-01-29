@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.SceneManagement;
 using static BlockSnake.TopScoreHelper;
 
 namespace BlockSnake
@@ -66,7 +64,6 @@ namespace BlockSnake
             {
                 CheckLength();
                 if (currentLangth < 0) currentLangth = 0;
-                Debug.Log(currentLangth + " " + _snakeLength);
                 if (currentLangth < _snakeLength)
                 {
                     for (var i = currentLangth; i < _snakeLength; i++)

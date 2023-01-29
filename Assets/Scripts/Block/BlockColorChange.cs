@@ -3,7 +3,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-
 namespace BlockSnake
 {
     public class BlockColorChange : MonoBehaviour
@@ -31,6 +30,5 @@ namespace BlockSnake
                 yield return new WaitForFixedUpdate();
             }
         }
-
     }
 }

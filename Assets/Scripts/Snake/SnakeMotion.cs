@@ -6,15 +6,21 @@ namespace BlockSnake
     public class SnakeMotion : MonoBehaviour
     {
         private SnakeControls _controls;
+        private Rigidbody _rb;
+
+        private Vector3 _lastTouchPos;
+
         private float _direction;
         private float _radius = 1.2f;
+        private float _sens = 3f;
 
-        [SerializeField] private GameObject _snakeHead;
+        [SerializeField] private Transform _snakeHead;
         [SerializeField] private Vector3 _centerPoint;
 
         private void Awake()
         {
             _controls = new SnakeControls();
+            _rb = GetComponent<Rigidbody>();
         }
 
         private void Start()
@@ -22,7 +28,15 @@ namespace BlockSnake
             StartCoroutine(SnakeMotionCoroutine());
         }
 
-        private void OnEnable() => _controls.Snake.Enable();
+        private void FixedUpdate()
+        {
+            CheckTouch();
+        }
+
+        private void OnEnable()
+        {
+            _controls.Snake.Enable();
+        }
 
         private IEnumerator SnakeMotionCoroutine()
         {
@@ -41,8 +55,22 @@ namespace BlockSnake
             }
         }
 
-        private void OnDestroy() => _controls.Snake.Disable();
+        private void CheckTouch()
+        {
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 delta = Input.mousePosition - _lastTouchPos;
+                _rb.velocity += new Vector3(delta.x * _sens * Time.deltaTime, 0f, 0f);
 
-        private void OnDisable() => _controls.Snake.Enable();
+            }
+            _lastTouchPos = Input.mousePosition;
+        }
+
+        private void OnDisable()
+        {
+            _controls.Snake.Disable();
+        }
+
+        private void OnDestroy() => _controls.Dispose();
     }
 }
