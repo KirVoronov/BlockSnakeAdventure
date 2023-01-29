@@ -1,1 +1,0 @@
-[{"LastTopScore":67},{"LastTopScore":3},{"LastTopScore":8},{"LastTopScore":11},{"LastTopScore":4},{"LastTopScore":97}]

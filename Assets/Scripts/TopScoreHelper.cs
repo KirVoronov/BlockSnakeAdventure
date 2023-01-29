@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,6 +14,7 @@ namespace BlockSnake
     {
         public static string FilePath = "LastTopScore.txt";
         public static bool CanUpdateScore = false;
+
         public static List<LastScore> AllScores = new List<LastScore>();
 
         [SerializeField] private TMP_Text _TopScore;
